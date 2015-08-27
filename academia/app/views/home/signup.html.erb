@@ -1,9 +1,14 @@
-<h1>Sign up</h1>
+<h2>Sign up</h2>
 <form action="/signup" method="POST">
 	<fieldset>
 		<label for="email">Email: </label> <input type="text" name="email" id="email"><br>
-		<label for="name">Name: </label> <input type="text" name="name" id="name"><br>
 		<label for="password">Password: </label> <input type="password" name="password" id="password"><br>
+		<label for="name">Name: </label> <input type="text" name="name" id="name"><br>
+		<label for="city">Location: </label> <input type="text" name="city" id="city" placeholder="City">
+			<select name="country">
+				<option value="canada">Canada</option>
+				<option value="us">US</option>
+			</select><br>
 		<input type="submit" value="Sign up">
 	</fieldset>
 </form>

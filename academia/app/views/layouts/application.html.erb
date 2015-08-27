@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Academia</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+	  <title>Synapus</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div id="top_bar">
+			<h1>Synap<span>us</span></h1>
+			<form method="post" action="login" id="login_form">
+				<input type="text" name="email" placeholder="Email">
+				<input type="password" name="password" placeholder="Password">
+				<input type="submit" value="Login">
+				<a href="signup">Create account</a>
+			</form>
+		</div>
 
-<%= yield %>
+		<div id="main_container">
+		<%= yield %>
+		</div>
 
-</body>
+	</body>
 </html>

@@ -13,3 +13,49 @@
  *= require_tree .
  *= require_self
  */
+
+body, html {
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+#top_bar {
+	margin: 0;
+	margin-bottom: 3em;
+	background: #222;
+	box-sizing: border-box;
+	padding: 15px;
+	box-shadow: 0 0 4px black;
+}
+
+h1 {
+	margin: 0;
+	font-size: 24px;
+	font-family: Georgia;
+	font-style: italic;
+	color: #aaa;
+}
+
+h1 span {
+	color: white;
+}
+
+#login_form {
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin-right: 20px;
+	margin-top: 20px;
+}
+
+#login_form a {
+	color: #ccf;
+}
+
+#main_container {
+	margin: auto;
+	width: 40%;
+}
