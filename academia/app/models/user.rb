@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+
+  has_secure_password
   
   validates :email,
     presence: true,
@@ -8,7 +10,7 @@ class User < ActiveRecord::Base
   validates :name,
     presence: true
 
-  before_save :encrypt_password
+  # before_save :encrypt_password
   after_save :clear_password
 
   def encrypt_password

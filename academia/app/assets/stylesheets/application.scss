@@ -14,6 +14,9 @@
  *= require_self
  */
 
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 body, html {
 	margin: 0;
 }
@@ -29,6 +32,11 @@ a {
 	box-sizing: border-box;
 	padding: 15px;
 	box-shadow: 0 0 4px black;
+}
+
+#top_bar a {
+	color: inherit;
+	text-decoration: none;
 }
 
 h1 {
@@ -57,5 +65,11 @@ h1 span {
 
 #main_container {
 	margin: auto;
-	width: 40%;
+	width: 700px;
+}
+
+.debug_dump {
+  clear: both;
+  margin: 45px;
+  box-sizing: border-box;
 }

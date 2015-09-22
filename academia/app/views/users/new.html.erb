@@ -1,0 +1,16 @@
+<h2>Sign up</h2>
+<%= form_for(@user) do |f| %>
+	<%= render 'shared/error_messages' %>
+	<fieldset>
+		<%= f.label :email %> <%= f.text_field :email %><br>
+		<%= f.label :password %> <%= f.password_field :password %><br>
+		<%= f.label :password_confirmation, "Confirmation" %> <%= f.password_field :password_confirmation %><br>
+		<%= f.label :name %> <%= f.text_field :name %><br>
+		<label for="city">Location: </label> <input type="text" name="city" id="city" placeholder="City">
+			<select name="country">
+				<option value="canada">Canada</option>
+				<option value="us">US</option>
+			</select><br>
+		<input type="submit" value="Sign up">
+	</fieldset>
+<% end %>

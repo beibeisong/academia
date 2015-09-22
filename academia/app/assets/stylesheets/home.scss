@@ -2,7 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import 'slick';
+@import 'slick-theme';
+
 label {
 	display: inline-block;
 	width: 8em;
+}
+
+.slick_slider
+{
+	margin: auto;
+}
+
+.slick_slider div
+{
+	height: 465px;
 }
