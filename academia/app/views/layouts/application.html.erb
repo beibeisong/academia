@@ -9,15 +9,22 @@
 	<body>
 		<div id="top_bar">
 			<h1><a href="/">Synap<span>us</span></a></h1>
-			<form method="post" action="login" id="login_form">
-				<input type="text" name="email" placeholder="Email">
-				<input type="password" name="password" placeholder="Password">
-				<input type="submit" value="Login">
-				<a href="/signup">Create account</a>
-			</form>
+            <% if logged_in? %>
+                <div id="user_info"><%= current_user.name %></div>
+            <% else %>
+                <%= form_for(:session, url: login_path, html: {id: 'login_form'}) do |f| %>
+                    <%= f.email_field :email, placeholder: 'Email' %>
+                    <%= f.password_field :password, placeholder: 'Password' %>
+                    <%= f.submit 'Log in' %>
+                    <a href="/signup">Create account</a>
+                <% end %>
+            <% end %>
 		</div>
 
 		<div id="main_container">
+		<% flash.each do |message_type, message| %>
+		  <div class="alert alert-<%= message_type %>"><%= message %></div>
+		<% end %>
 		<%= yield %>
 		</div>
 
