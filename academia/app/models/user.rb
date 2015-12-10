@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+  has_many :projects
+  has_and_belongs_to_many :projects
+
   has_secure_password
   
   validates :email,
@@ -36,6 +39,10 @@ class User < ActiveRecord::Base
 
   def match_password(login_password = "")
     password == BCrypt::Engine.hash_secret(login_password, password_salt)
+  end
+
+  def owned_projects
+    Project.where('user_id = ?', self.id)
   end
 
 end

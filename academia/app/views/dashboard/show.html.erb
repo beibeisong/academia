@@ -1,0 +1,16 @@
+<h2>Dashboard</h2>
+<p><%= gravatar_for @user %> <%= @user.name %></p>
+<p><a href="projects/new">Create a project</a></p>
+<h3>Your projects</h3>
+<ul>
+    <% @owned_projects.each do |project| %>
+        <li><%= link_to project.title, project %></li>
+    <% end %>
+</ul>
+
+<h3>Joined projects</h3>
+<ul>
+  <% @projects.each do |project| %>
+      <li><%= link_to project.title, project %></li>
+  <% end %>
+</ul>

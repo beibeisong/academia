@@ -7,9 +7,14 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'signup' => 'users#new'
   resources :users
+  resources :projects do
+    get '/join', :to => 'projects#join', :as => 'join'
+  end
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+
+  get 'dashboard' => 'dashboard#show'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

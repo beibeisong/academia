@@ -4,13 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   include SessionsHelper
-
-  def current_user
-    @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
-    @current_user ||= User.find_by_authentication_token(cookies[:auth_token]) if (cookies[:auth_token])
-
-    @current_user
-  end
   
   protected
 
@@ -32,6 +25,24 @@ class ApplicationController < ActionController::Base
 
   def save_login_state
     !session[:user_id].present?()
+  end
+
+  ##    Forbidden
+  #   Return: Error with status :forbidden (403).
+  def forbidden
+    render(
+        nothing: true,
+        status: :forbidden
+    )
+  end
+
+  ##    Unauthorized
+  #   Returns: Error with status :unauthorized (401).
+  def unauthorized
+    render(
+        nothing: true,
+        status: :unauthorized
+    )
   end
   
 end

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	  <title>Synapus</title>
-	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-	  <%= csrf_meta_tags %>
-	</head>
-	<body>
-		<div id="top_bar">
-			<h1><a href="/">Synap<span>us</span></a></h1>
+    <head>
+        <title>Synapus</title>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+    </head>
+    <body>
+        <div id="top_bar">
+            <h1><a href="<%= logged_in? ? '/dashboard' : '/' %>">Synap<span>us</span></a></h1>
             <% if logged_in? %>
                 <div id="user_info"><%= current_user.name %></div>
             <% else %>
@@ -19,16 +19,16 @@
                     <a href="/signup">Create account</a>
                 <% end %>
             <% end %>
-		</div>
+        </div>
 
-		<div id="main_container">
-		<% flash.each do |message_type, message| %>
-		  <div class="alert alert-<%= message_type %>"><%= message %></div>
-		<% end %>
-		<%= yield %>
-		</div>
+        <div id="main_container">
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <% end %>
+        <%= yield %>
+        </div>
 
-		<%= debug(params) if Rails.env.development? %>
+        <%= debug(params) if Rails.env.development? %>
 
-	</body>
+    </body>
 </html>
