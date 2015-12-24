@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :projects do
     get '/join', :to => 'projects#join', :as => 'join'
   end
+  resources :project_invitations
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'

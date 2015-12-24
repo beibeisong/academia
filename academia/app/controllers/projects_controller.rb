@@ -1,6 +1,10 @@
 class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
+    @is_owner = @project.user_id == current_user.id
+    if @is_owner
+      @invitation = ProjectInvitation.new
+    end
   end
 
   def create
@@ -20,7 +24,8 @@ class ProjectsController < ApplicationController
 
   def join
     @project = Project.find(params[:project_id])
-    @project.users << current_user
+    @project.users << current_user unless current_user.in? @project.users
+    end
     redirect_to @project
   end
 
