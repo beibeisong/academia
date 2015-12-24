@@ -25,7 +25,6 @@ class ProjectsController < ApplicationController
   def join
     @project = Project.find(params[:project_id])
     @project.users << current_user unless current_user.in? @project.users
-    end
     redirect_to @project
   end
 
