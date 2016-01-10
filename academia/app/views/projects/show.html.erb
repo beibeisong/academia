@@ -3,6 +3,9 @@
 <p><%= link_to 'Join project', project_join_path(@project) %></p>
 <% if @is_owner %>
     <%= form_for(@invitation) do |f| %>
-        <%= f.label :to_user, 'Invite: ' %> <%= f.text_field :to_user %> <input type="submit" value="Invite">
+        <%= f.hidden_field :project_id, value: @project.id %>
+        <%= f.label :to_user, 'Invite: ' %> <%= f.text_field :to_user, placeholder: 'Email' %><br>
+        <%= f.label :message, 'Message: ' %> <%= f.text_area :message %><br>
+        <br><input type="submit" value="Invite">
     <% end %>
 <% end %>
