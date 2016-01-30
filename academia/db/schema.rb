@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151224034430) do
+ActiveRecord::Schema.define(version: 20160112053346) do
 
   create_table "project_invitations", force: :cascade do |t|
     t.integer  "project_id", limit: 4
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20151224034430) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
+
+  create_table "project_join_requests", force: :cascade do |t|
+    t.integer  "project_id", limit: 4
+    t.integer  "user_id",    limit: 4
+    t.boolean  "approved",   limit: 1
+    t.boolean  "rejected",   limit: 1
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "project_join_requests", ["project_id"], name: "fk_rails_185e44d802", using: :btree
+  add_index "project_join_requests", ["user_id", "project_id"], name: "index_project_join_requests_on_user_id_and_project_id", unique: true, using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -50,5 +62,7 @@ ActiveRecord::Schema.define(version: 20151224034430) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "project_join_requests", "projects"
+  add_foreign_key "project_join_requests", "users"
   add_foreign_key "projects", "users"
 end

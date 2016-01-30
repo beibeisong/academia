@@ -6,5 +6,6 @@ class DashboardController < ApplicationController
     @user = current_user
     @owned_projects = @user.owned_projects
     @projects = @user.projects
+    @invitations = @user.project_invitations
   end
 end

@@ -1,11 +1,21 @@
 <h2><%= @project.title %></h2>
 <p><%= @project.description %></p>
-<p><%= link_to 'Join project', project_join_path(@project) %></p>
+
 <% if @is_owner %>
-    <%= form_for(@invitation) do |f| %>
+    <%= form_for(@new_invitation) do |f| %>
         <%= f.hidden_field :project_id, value: @project.id %>
         <%= f.label :to_user, 'Invite: ' %> <%= f.text_field :to_user, placeholder: 'Email' %><br>
         <%= f.label :message, 'Message: ' %> <%= f.text_area :message %><br>
         <br><input type="submit" value="Invite">
+    <% end %>
+<% end %>
+
+<% if @invitation %>
+    <%= @invitation.from.name %> has invited you to join this project.
+    <%= form_for(@invitation) do %>
+        <input type="hidden" name="action" value="accept">
+        <input type="submit" value="Request to Join">
+        <input type="hidden" name="action" value="ignore">
+        <input type="submit" value="Ignore">
     <% end %>
 <% end %>

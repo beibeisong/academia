@@ -1,10 +1,14 @@
 class ProjectsController < ApplicationController
+
+  before_filter 'validate_logged_in'
+
   def show
     @project = Project.find(params[:id])
     @is_owner = @project.user_id == current_user.id
     if @is_owner
-      @invitation = ProjectInvitation.new
+      @new_invitation = ProjectInvitation.new
     end
+    @invitation = ProjectInvitation.find_by(project_id: @project.id, to_user: current_user.id)
   end
 
   def create

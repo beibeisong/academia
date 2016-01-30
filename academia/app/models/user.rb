@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   after_save :clear_password
 
   def encrypt_password
-    if (self.password_changed?())
+    if self.password_changed?()
       self.password_salt = BCrypt::Engine.generate_salt()
       self.password = BCrypt::Engine.hash_secret(password, password_salt)
     end
@@ -27,22 +27,26 @@ class User < ActiveRecord::Base
     self.password = nil
   end
 
-  def self.authenticate(email = "", login_password = "")
+  def self.authenticate(email = "", login_password = '')
     user = User.find_by_email(email)
 
-    if (user && user.match_password(login_password))
+    if user && user.match_password(login_password)
       return user
     else
       return false
     end
   end
 
-  def match_password(login_password = "")
+  def match_password(login_password = '')
     password == BCrypt::Engine.hash_secret(login_password, password_salt)
   end
 
   def owned_projects
     Project.where('user_id = ?', self.id)
+  end
+
+  def project_invitations
+    ProjectInvitation.where(to_user: self.id)
   end
 
 end

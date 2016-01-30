@@ -14,3 +14,10 @@
       <li><%= link_to project.title, project %></li>
   <% end %>
 </ul>
+
+<h3>Project invitations</h3>
+<ul>
+  <% @invitations.each do |invitation| %>
+      <li><%= invitation.from.name %> invited you to join <%= link_to invitation.project.title, invitation.project %></li>
+  <% end %>
+</ul>

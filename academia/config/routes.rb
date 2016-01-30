@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
   resources :users
   resources :projects do
-    get '/join', :to => 'projects#join', :as => 'join'
+#    get '/join', :to => 'projects#join', :as => 'join'
   end
   resources :project_invitations
   get 'login' => 'sessions#new'

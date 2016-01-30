@@ -1,5 +1,7 @@
 class ProjectInvitationsController < ApplicationController
 
+  before_filter 'validate_logged_in'
+
   def create
     #TODO: validate that :to_user isn't already a member, and current_user is the project owner
 
